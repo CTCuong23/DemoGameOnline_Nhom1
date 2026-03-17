@@ -14,7 +14,7 @@ public class HostModeSpawner : SimulationBehaviour, IPlayerJoined, IPlayerLeft
         if (!Runner.IsServer)
             return;
 
-        var spawnPosition = new Vector3(0f, 3f, 0f);
+        var spawnPosition = new Vector3(Random.Range(-2f,2f),3f,Random.Range(-2f,2f));
         var networkObject = Runner.Spawn(playerPrefab, spawnPosition, Quaternion.identity, player);
 
         _spawnedCharacters[player] = networkObject;

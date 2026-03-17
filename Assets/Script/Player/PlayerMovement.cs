@@ -1,37 +1,56 @@
 using Fusion;
+using static Unity.Collections.Unicode;
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : NetworkBehaviour
 {
-    [Header("Movement")]
     [SerializeField] private float moveSpeed = 6f;
 
+    private Animator _animator;
     private CharacterController _controller;
-    private float _verticalVelocity;
+
+    [Networked] private float _verticalVelocity { get; set; }
+
+    [Networked, OnChangedRender(nameof(OnSpeedChanged))]
+    public float Speed { get; set; }
+
+    private void OnSpeedChanged()
+    {
+        if (_animator != null)
+            _animator.SetFloat("Speed", Speed);
+    }
 
     private void Awake()
     {
         _controller = GetComponent<CharacterController>();
+        _animator = GetComponent<Animator>();
     }
 
     public override void FixedUpdateNetwork()
     {
-        if (!GetInput(out NetworkInputData input))
+        if (!GetInput<NetworkInputData>(out var input))
             return;
 
-        var moveDirection = new Vector3(input.moveInput.x, 0f, input.moveInput.y).normalized;
+        Physics.SyncTransforms();
+
+        if (input.moveDirection.sqrMagnitude > 0.01f)
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                Quaternion.LookRotation(input.moveDirection),
+                Runner.DeltaTime * 15f
+            );
 
         if (_controller.isGrounded)
-        {
             _verticalVelocity = -2f;
-        }
         else
-        {
             _verticalVelocity += Physics.gravity.y * Runner.DeltaTime;
-        }
 
-        var finalMove = moveDirection * moveSpeed + new Vector3(0f, _verticalVelocity, 0f);
+        Vector3 finalMove =
+            (input.moveDirection * moveSpeed) +
+            new Vector3(0f, _verticalVelocity, 0f);
+
         _controller.Move(finalMove * Runner.DeltaTime);
+
+        Speed = input.moveDirection.magnitude;
     }
 }

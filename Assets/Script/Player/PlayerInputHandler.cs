@@ -23,23 +23,36 @@ public class PlayerInputHandler : NetworkBehaviour, INetworkRunnerCallbacks
     {
         var data = new NetworkInputData();
 
-        var keyboard = Keyboard.current;
-        if (keyboard != null)
+        if (Keyboard.current != null)
         {
-            var moveDir = Vector2.zero;
+            var raw = Vector2.zero;
 
-            if (keyboard.wKey.isPressed) moveDir.y += 1f;
-            if (keyboard.sKey.isPressed) moveDir.y -= 1f;
-            if (keyboard.dKey.isPressed) moveDir.x += 1f;
-            if (keyboard.aKey.isPressed) moveDir.x -= 1f;
+            if (Keyboard.current.wKey.isPressed) raw.y += 1f;
+            if (Keyboard.current.sKey.isPressed) raw.y -= 1f;
+            if (Keyboard.current.dKey.isPressed) raw.x += 1f;
+            if (Keyboard.current.aKey.isPressed) raw.x -= 1f;
 
-            data.moveInput = moveDir.normalized;
+            if (raw != Vector2.zero && Camera.main != null)
+            {
+                var camTransform = Camera.main.transform;
+
+                var forward = camTransform.forward;
+                forward.y = 0f;
+                forward.Normalize();
+
+                var right = camTransform.right;
+                right.y = 0f;
+                right.Normalize();
+
+                data.moveDirection = (forward * raw.y + right * raw.x).normalized;
+            }
         }
 
         input.Set(data);
     }
 
-    public void OnObjectExitAOI(NetworkRunner runner, NetworkObject obj, PlayerRef player) { }
+
+public void OnObjectExitAOI(NetworkRunner runner, NetworkObject obj, PlayerRef player) { }
     public void OnObjectEnterAOI(NetworkRunner runner, NetworkObject obj, PlayerRef player) { }
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player) { }
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player) { }
