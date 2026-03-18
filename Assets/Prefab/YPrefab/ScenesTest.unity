@@ -37669,6 +37669,22 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -5.872
       objectReference: {fileID: 0}
+    - target: {fileID: 6517655871235101031, guid: 462afbcd28778f24aa60102196646d0b, type: 3}
+      propertyPath: m_BoxSize.x
+      value: 50.49774
+      objectReference: {fileID: 0}
+    - target: {fileID: 6517655871235101031, guid: 462afbcd28778f24aa60102196646d0b, type: 3}
+      propertyPath: m_BoxSize.z
+      value: 48.684124
+      objectReference: {fileID: 0}
+    - target: {fileID: 6517655871235101031, guid: 462afbcd28778f24aa60102196646d0b, type: 3}
+      propertyPath: m_BoxOffset.x
+      value: -6.2548485
+      objectReference: {fileID: 0}
+    - target: {fileID: 6517655871235101031, guid: 462afbcd28778f24aa60102196646d0b, type: 3}
+      propertyPath: m_BoxOffset.z
+      value: -13.79611
+      objectReference: {fileID: 0}
     - target: {fileID: 6586844062293645944, guid: 462afbcd28778f24aa60102196646d0b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.5
