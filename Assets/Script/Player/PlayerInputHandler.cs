@@ -46,6 +46,7 @@ public class PlayerInputHandler : NetworkBehaviour, INetworkRunnerCallbacks
 
                 data.moveDirection = (forward * raw.y + right * raw.x).normalized;
             }
+            data.isMinusKeyPressed = Keyboard.current.minusKey.isPressed || Keyboard.current.numpadMinusKey.isPressed;
         }
 
         input.Set(data);
