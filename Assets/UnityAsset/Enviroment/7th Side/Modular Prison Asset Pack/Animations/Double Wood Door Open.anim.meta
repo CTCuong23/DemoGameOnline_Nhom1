@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 18dc0cd2c080841dea60987a38ce93fa
+guid: fe347d3f35694b7409d8dff21ae5fb9c
 NativeFormatImporter:
   externalObjects: {}
-  mainObjectFileID: 11400000
+  mainObjectFileID: 7400000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -10,6 +10,7 @@ AssetOrigin:
   serializedVersion: 1
   productId: 232410
   packageName: Modular Prison Asset Pack
-  packageVersion: 
-  assetPath: Assets/Unity Basic/Settings/UniversalRenderPipelineGlobalSettings.asset
-  uploadId: 0
+  packageVersion: 1.0
+  assetPath: Assets/7th Side/Modular Prison Asset Pack/Animations/Double Wood Door
+    Open.anim
+  uploadId: 538226
