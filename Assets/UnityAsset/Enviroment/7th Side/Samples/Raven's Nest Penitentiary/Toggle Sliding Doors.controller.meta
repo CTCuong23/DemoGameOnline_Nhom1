@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 18dc0cd2c080841dea60987a38ce93fa
+guid: 03111f0024982aa4ea0f722b69583474
 NativeFormatImporter:
   externalObjects: {}
-  mainObjectFileID: 11400000
+  mainObjectFileID: 9100000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -10,6 +10,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 232410
   packageName: Modular Prison Asset Pack
-  packageVersion: 
-  assetPath: Assets/Unity Basic/Settings/UniversalRenderPipelineGlobalSettings.asset
-  uploadId: 0
+  packageVersion: 1.0
+  assetPath: Assets/7th Side/Samples/Raven's Nest Penitentiary/Toggle Sliding Doors.controller
+  uploadId: 538226
