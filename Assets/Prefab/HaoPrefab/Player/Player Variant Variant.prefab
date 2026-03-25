@@ -367,3 +367,4 @@ MonoBehaviour:
   maxHealth: 100
   _CurrentHealth: 0
   healthBarFillImage: {fileID: 1381232162158594857}
+  overheadCanvas: {fileID: 4601939189292977487}
