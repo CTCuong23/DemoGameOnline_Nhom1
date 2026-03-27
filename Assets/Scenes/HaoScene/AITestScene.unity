@@ -35163,7 +35163,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8504811211344828361, guid: 8d9d8ca610564b04ab329f8f07306d15, type: 3}
       propertyPath: TotalWords
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8504811211344828361, guid: 8d9d8ca610564b04ab329f8f07306d15, type: 3}
       propertyPath: StateHashes.Array.size
@@ -35183,27 +35183,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8504811211344828361, guid: 8d9d8ca610564b04ab329f8f07306d15, type: 3}
       propertyPath: 'StateHashes.Array.data[3]'
-      value: 1080829965
-      objectReference: {fileID: 0}
-    - target: {fileID: -8504811211344828361, guid: 8d9d8ca610564b04ab329f8f07306d15, type: 3}
-      propertyPath: 'StateHashes.Array.data[4]'
-      value: 1130333774
-      objectReference: {fileID: 0}
-    - target: {fileID: -8504811211344828361, guid: 8d9d8ca610564b04ab329f8f07306d15, type: 3}
-      propertyPath: 'StateHashes.Array.data[5]'
       value: 646380074
       objectReference: {fileID: 0}
     - target: {fileID: -8504811211344828361, guid: 8d9d8ca610564b04ab329f8f07306d15, type: 3}
-      propertyPath: 'StateHashes.Array.data[6]'
+      propertyPath: 'StateHashes.Array.data[4]'
       value: -1546996312
       objectReference: {fileID: 0}
     - target: {fileID: -8504811211344828361, guid: 8d9d8ca610564b04ab329f8f07306d15, type: 3}
-      propertyPath: 'StateHashes.Array.data[7]'
+      propertyPath: 'StateHashes.Array.data[5]'
       value: 765711723
       objectReference: {fileID: 0}
     - target: {fileID: -8504811211344828361, guid: 8d9d8ca610564b04ab329f8f07306d15, type: 3}
-      propertyPath: 'StateHashes.Array.data[8]'
+      propertyPath: 'StateHashes.Array.data[6]'
       value: 81563449
+      objectReference: {fileID: 0}
+    - target: {fileID: -8504811211344828361, guid: 8d9d8ca610564b04ab329f8f07306d15, type: 3}
+      propertyPath: 'StateHashes.Array.data[7]'
+      value: 1080829965
+      objectReference: {fileID: 0}
+    - target: {fileID: -8504811211344828361, guid: 8d9d8ca610564b04ab329f8f07306d15, type: 3}
+      propertyPath: 'StateHashes.Array.data[8]'
+      value: 1130333774
       objectReference: {fileID: 0}
     - target: {fileID: -8504811211344828361, guid: 8d9d8ca610564b04ab329f8f07306d15, type: 3}
       propertyPath: 'TriggerHashes.Array.data[3]'
