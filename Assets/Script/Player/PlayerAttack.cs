@@ -50,12 +50,19 @@ public class PlayerAttack : NetworkBehaviour
         Vector3 originPos = attackOrigin != null ? attackOrigin.position : transform.position + Vector3.up * 1f;
         Vector3 direction = attackOrigin != null ? attackOrigin.forward : transform.forward;
 
-        RaycastHit hit;
-        if (Physics.SphereCast(originPos, 0.5f, direction, out hit, attackRange, enemyLayer))
+        // Dời cái bong bóng đấm ra phía trước mặt nhân vật một chút
+        Vector3 hitCenter = originPos + direction * (attackRange * 0.5f);
+        // Bán kính vùng đấm cho nó bự ra dễ trúng hơn
+        float hitRadius = attackRange * 0.6f;
+
+        // Lấy tất cả các quái nằm trong cái bong bóng đó
+        Collider[] hitEnemies = Physics.OverlapSphere(hitCenter, hitRadius, enemyLayer);
+        
+        foreach (Collider enemy in hitEnemies)
         {
-            if (hit.collider.TryGetComponent(out HealthBase targetHealth))
+            if (enemy.TryGetComponent(out HealthBase targetHealth))
             {
-                if (hit.collider.TryGetComponent(out NetworkObject hitNetworkObj))
+                if (enemy.TryGetComponent(out NetworkObject hitNetworkObj))
                 {
                     if (HasStateAuthority)
                         targetHealth.TakeDamage(punchDamage);
@@ -83,5 +90,16 @@ public class PlayerAttack : NetworkBehaviour
     private void PlayPunchAnimationLocally()
     {
         if (_animator != null) _animator.SetTrigger("Attack"); 
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        // Hiển thị vòng tròn đỏ trong màn hình Scene để bạn dễ canh góc đấm
+        Gizmos.color = Color.red;
+        Vector3 originPos = attackOrigin != null ? attackOrigin.position : transform.position + Vector3.up * 1f;
+        Vector3 direction = attackOrigin != null ? attackOrigin.forward : transform.forward;
+        Vector3 hitCenter = originPos + direction * (attackRange * 0.5f);
+        float hitRadius = attackRange * 0.6f;
+        Gizmos.DrawWireSphere(hitCenter, hitRadius);
     }
 }

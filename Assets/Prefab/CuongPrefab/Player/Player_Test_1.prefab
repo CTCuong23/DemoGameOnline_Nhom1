@@ -435,12 +435,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   punchDamage: 10
-  attackRange: 1.5
+  attackRange: 0.67
   attackCooldown: 1
   attackOrigin: {fileID: 8409647673637997628}
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   _isPunching:
     _value: 0
   _animator: {fileID: 7410589760819832694}
