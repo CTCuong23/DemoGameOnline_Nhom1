@@ -6,4 +6,5 @@ public struct NetworkInputData : INetworkInput
     public Vector3 moveDirection;
     public NetworkBool isMinusKeyPressed;
     public NetworkBool isAttackPressed;
+    public NetworkBool isSprintPressed;
 }

@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerMovement : NetworkBehaviour
 {
-    [SerializeField] private float moveSpeed = 6f;
+    [Header("Movement Speeds")]
+    [SerializeField] private float walkSpeed = 6f;
+    [SerializeField] private float sprintSpeed = 10f;
 
     private Animator _animator;
     private CharacterController _controller;
@@ -45,12 +47,21 @@ public class PlayerMovement : NetworkBehaviour
         else
             _verticalVelocity += Physics.gravity.y * Runner.DeltaTime;
 
+        // Lựa chọn tốc độ tùy theo việc có đang đè phím chạy không
+        float currentSpeed = input.isSprintPressed ? sprintSpeed : walkSpeed;
+
         Vector3 finalMove =
-            (input.moveDirection * moveSpeed) +
+            (input.moveDirection * currentSpeed) +
             new Vector3(0f, _verticalVelocity, 0f);
 
         _controller.Move(finalMove * Runner.DeltaTime);
 
-        Speed = input.moveDirection.magnitude;
+        // Quy chuẩn cho Animator Animator: 0 = Đứng yên, 1 = Đi bộ, 2 = Chạy nhanh
+        float targetAnimSpeed = 0f;
+        if (input.moveDirection.sqrMagnitude > 0.01f)
+        {
+            targetAnimSpeed = input.isSprintPressed ? 2f : 1f;
+        }
+        Speed = targetAnimSpeed;
     }
 }

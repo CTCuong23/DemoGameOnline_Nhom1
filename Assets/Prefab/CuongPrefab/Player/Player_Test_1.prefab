@@ -359,6 +359,14 @@ PrefabInstance:
       propertyPath: 'NetworkedBehaviours.Array.data[6]'
       value: 
       objectReference: {fileID: 2278822133458538467}
+    - target: {fileID: 4442859789323801607, guid: 69f918c80496093468c039ef7b4aecd4, type: 3}
+      propertyPath: walkSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4442859789323801607, guid: 69f918c80496093468c039ef7b4aecd4, type: 3}
+      propertyPath: sprintSpeed
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
