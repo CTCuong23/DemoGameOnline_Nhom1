@@ -49,6 +49,17 @@ public class PlayerInputHandler : NetworkBehaviour, INetworkRunnerCallbacks
             data.isMinusKeyPressed = Keyboard.current.minusKey.isPressed || Keyboard.current.numpadMinusKey.isPressed;
         }
 
+        if (Mouse.current != null && Mouse.current.leftButton.isPressed)
+        {
+            data.isAttackPressed = true;
+            Debug.Log("[Input] Đã nhận ĐẤM từ Chuột Trái!");
+        }
+        else if (Keyboard.current != null && Keyboard.current.spaceKey.isPressed)
+        {
+            data.isAttackPressed = true;
+            Debug.Log("[Input] Đã nhận ĐẤM từ phím Space (Dự phòng)!");
+        }
+
         input.Set(data);
     }
 
