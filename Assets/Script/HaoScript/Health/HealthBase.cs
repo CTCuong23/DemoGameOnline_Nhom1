@@ -25,6 +25,8 @@ public class HealthBase : NetworkBehaviour
 
         CurrentHealth = Mathf.Clamp(CurrentHealth - amount, 0f, maxHealth);
 
+        Debug.Log("Máu hiện tại của quái/người này là: " + CurrentHealth);
+
         if (CurrentHealth <= 0)
         {
             OnDeath();
