@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerHealth : HealthBase
@@ -12,6 +12,21 @@ public class PlayerHealth : HealthBase
     [Header("Screen Space UI (Thanh máu góc trái)")]
     // Không cần kéo, game sẽ tự tìm thanh máu góc trái trên màn hình
     private Image hudHealthFillImage;
+
+    private Animator _animator;
+    private PlayerMovement _playerMovement;
+    private PlayerAttack _playerAttack;
+    private CharacterController _characterController;
+
+    private bool _isDead = false;
+
+    private void Awake()
+    {
+        _animator = GetComponent<Animator>();
+        _playerMovement = GetComponent<PlayerMovement>();
+        _playerAttack = GetComponent<PlayerAttack>();
+        _characterController = GetComponent<CharacterController>();
+    }
 
     public override void Spawned()
     {
@@ -55,6 +70,32 @@ public class PlayerHealth : HealthBase
     {
         base.OnCurrentHealthChanged();
         UpdateHealthBarUI();
+
+        if (CurrentHealth <= 0 && !_isDead)
+        {
+            OnDeath();
+        }
+    }
+
+    protected override void OnDeath()
+    {
+        if (_isDead) return;
+        _isDead = true;
+
+        base.OnDeath();
+
+        // Chạy animation Die
+        if (_animator != null)
+        {
+            _animator.SetTrigger("Die");
+        }
+
+        // Tắt di chuyển và tấn công
+        if (_playerMovement != null) _playerMovement.enabled = false;
+        if (_playerAttack != null) _playerAttack.enabled = false;
+        if (_characterController != null) _characterController.enabled = false;
+
+        Debug.Log("Người chơi đã chết!");
     }
 
     private void UpdateHealthBarUI()
