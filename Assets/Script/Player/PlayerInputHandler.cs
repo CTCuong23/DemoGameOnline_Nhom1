@@ -47,6 +47,7 @@ public class PlayerInputHandler : NetworkBehaviour, INetworkRunnerCallbacks
                 data.moveDirection = (forward * raw.y + right * raw.x).normalized;
             }
             data.isMinusKeyPressed = Keyboard.current.minusKey.isPressed || Keyboard.current.numpadMinusKey.isPressed;
+            data.isSprintPressed = Keyboard.current.leftShiftKey.isPressed;
         }
 
         if (Mouse.current != null && Mouse.current.leftButton.isPressed)
