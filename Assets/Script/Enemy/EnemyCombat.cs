@@ -7,6 +7,7 @@ public class EnemyCombat : NetworkBehaviour
     [Header("Combat Settings")]
     [Tooltip("Lượng sát thương con quái vật này gây ra cho người chơi")]
     [SerializeField] public float damageToTarget = 20f;
+    [SerializeField] Animator animator;
 
     // Hàm gọi khi quái vật gây sát thương thành công lên Player
     // Được khai báo `virtual` để Boss sau này có thể kế thừa và viết lại: ví dụ gọi hiệu ứng cháy/độc, hú hét...
@@ -15,6 +16,7 @@ public class EnemyCombat : NetworkBehaviour
         if (targetHealth != null)
         {
             targetHealth.TakeDamage(damageToTarget);
+            animator.SetTrigger("Attack");
         }
     }
 
