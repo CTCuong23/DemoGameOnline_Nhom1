@@ -117,13 +117,13 @@ public class EnemyHealth : HealthBase
         var rb = GetComponent<Rigidbody>();
         if (rb != null) rb.isKinematic = true;
 
-        // Ép xác chết dính xuống mặt đất (Khắc phục lỗi Animation có tâm ở giữa nên nằm xoay bị nổi lơ lửng)
-        // Bắn 1 tia từ trên đầu xuống để đo khoảng cách tới mặt đất thực sự
-        if (Physics.Raycast(transform.position + Vector3.up * 1f, Vector3.down, out RaycastHit hit, 5f))
-        {
-            // Kéo toàn bộ mô hình xuống sát mặt đất (cộng 0.1f cho khỏi bị lún)
-            transform.position = new Vector3(transform.position.x, hit.point.y + -0.5f, transform.position.z);
-        }
+        //// Ép xác chết dính xuống mặt đất (Khắc phục lỗi Animation có tâm ở giữa nên nằm xoay bị nổi lơ lửng)
+        //// Bắn 1 tia từ trên đầu xuống để đo khoảng cách tới mặt đất thực sự
+        //if (Physics.Raycast(transform.position + Vector3.up * 1f, Vector3.down, out RaycastHit hit, 5f))
+        //{
+        //    // Kéo toàn bộ mô hình xuống sát mặt đất (cộng 0.1f cho khỏi bị lún)
+        //    transform.position = new Vector3(transform.position.x, hit.point.y + -0.5f, transform.position.z);
+        //}
 
         // 4. Báo cho mạng Fusion xóa bỏ quái vật này sau 4 giây (dùng Coroutine để chắc chắn)
         if (HasStateAuthority)

@@ -591,10 +591,6 @@ PrefabInstance:
       propertyPath: SortKey
       value: 405212971
       objectReference: {fileID: 0}
-    - target: {fileID: 5489173788025167419, guid: 8d9d8ca610564b04ab329f8f07306d15, type: 3}
-      propertyPath: m_Center.y
-      value: -0.01
-      objectReference: {fileID: 0}
     - target: {fileID: 7484896665829705016, guid: 8d9d8ca610564b04ab329f8f07306d15, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.003646
@@ -638,10 +634,6 @@ PrefabInstance:
     - target: {fileID: 7823985590507495298, guid: 8d9d8ca610564b04ab329f8f07306d15, type: 3}
       propertyPath: m_Name
       value: BookHeadMonster_withBlood Variant
-      objectReference: {fileID: 0}
-    - target: {fileID: 7823985590507495298, guid: 8d9d8ca610564b04ab329f8f07306d15, type: 3}
-      propertyPath: m_TagString
-      value: Enemies
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
