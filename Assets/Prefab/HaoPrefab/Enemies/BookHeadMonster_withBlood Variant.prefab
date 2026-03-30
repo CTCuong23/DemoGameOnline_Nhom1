@@ -8,17 +8,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7093343568798245616, guid: 2459a6af98a1eae4ebc79b1ffd638762, type: 3}
+      propertyPath: m_TagString
+      value: Enemies
+      objectReference: {fileID: 0}
     - target: {fileID: 8326678481101050231, guid: 2459a6af98a1eae4ebc79b1ffd638762, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.2136707
+      value: -2.003646
       objectReference: {fileID: 0}
     - target: {fileID: 8326678481101050231, guid: 2459a6af98a1eae4ebc79b1ffd638762, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.2
+      value: -4.97
       objectReference: {fileID: 0}
     - target: {fileID: 8326678481101050231, guid: 2459a6af98a1eae4ebc79b1ffd638762, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 23.47
+      value: 13.746697
       objectReference: {fileID: 0}
     - target: {fileID: 8326678481101050231, guid: 2459a6af98a1eae4ebc79b1ffd638762, type: 3}
       propertyPath: m_LocalRotation.w
@@ -48,9 +52,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8590313710493490136, guid: 2459a6af98a1eae4ebc79b1ffd638762, type: 3}
+      propertyPath: m_TagString
+      value: Enemies
+      objectReference: {fileID: 0}
     - target: {fileID: 8702534868499336141, guid: 2459a6af98a1eae4ebc79b1ffd638762, type: 3}
       propertyPath: m_Name
       value: BookHeadMonster_withBlood Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8702534868499336141, guid: 2459a6af98a1eae4ebc79b1ffd638762, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8702534868499336141, guid: 2459a6af98a1eae4ebc79b1ffd638762, type: 3}
       propertyPath: m_TagString
@@ -80,6 +92,9 @@ PrefabInstance:
       addedObject: {fileID: 3503892845450488203}
     - targetCorrespondingSourceObject: {fileID: 8702534868499336141, guid: 2459a6af98a1eae4ebc79b1ffd638762, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 5766457688181232653}
+    - targetCorrespondingSourceObject: {fileID: 8702534868499336141, guid: 2459a6af98a1eae4ebc79b1ffd638762, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1064241501568581317}
     - targetCorrespondingSourceObject: {fileID: 8702534868499336141, guid: 2459a6af98a1eae4ebc79b1ffd638762, type: 3}
       insertIndex: -1
@@ -87,7 +102,36 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8702534868499336141, guid: 2459a6af98a1eae4ebc79b1ffd638762, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4616818986240888982}
+    - targetCorrespondingSourceObject: {fileID: 8590313710493490136, guid: 2459a6af98a1eae4ebc79b1ffd638762, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5489173788025167419}
   m_SourcePrefab: {fileID: 100100000, guid: 2459a6af98a1eae4ebc79b1ffd638762, type: 3}
+--- !u!1 &7162712304944025495 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8590313710493490136, guid: 2459a6af98a1eae4ebc79b1ffd638762, type: 3}
+  m_PrefabInstance: {fileID: 1464228611788887119}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &5489173788025167419
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7162712304944025495}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.02, y: 0.02, z: 0.02}
+  m_Center: {x: 0.03, y: -0.01, z: 0}
 --- !u!1 &7823985590507495298 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8702534868499336141, guid: 2459a6af98a1eae4ebc79b1ffd638762, type: 3}
@@ -113,6 +157,7 @@ MonoBehaviour:
   - {fileID: 4923880086472805263}
   - {fileID: 1496112429188279906}
   - {fileID: 3503892845450488203}
+  - {fileID: 5766457688181232653}
   - {fileID: -8504811211344828361}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &4923880086472805263
@@ -202,7 +247,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   _CurrentHealth: 0
-  hitDamageAmount: 10
+--- !u!114 &5766457688181232653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7823985590507495298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e62c4f1e5373a547ab5a2aa8745077b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageToTarget: 20
 --- !u!136 &1064241501568581317
 CapsuleCollider:
   m_ObjectHideFlags: 0

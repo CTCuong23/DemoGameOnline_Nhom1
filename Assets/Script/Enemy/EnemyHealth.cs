@@ -22,21 +22,10 @@ public class EnemyHealth : HealthBase
         _stateMachine = GetComponent<Unity.VisualScripting.StateMachine>();
     }
 
-    [Header("Hit Settings")]
-    [Tooltip("Số máu bị trừ mỗi khi người chơi chém hoặc tương tác")]
-    [SerializeField] private float hitDamageAmount = 10f;
-
     public override void Spawned()
     {
         base.Spawned();
         // Thiết lập máu quái vật mặc định
-    }
-
-    // Hàm gọi khi bị tương tác ngoài Unity (Ví dụ: Sự kiện từ Physics Raycast, OnTriggerEnter, hoặc UI Button)
-    public void InteractHit()
-    {
-        // Gọi thẳng hàm TakeDamage dùng số máu đã khai báo
-        TakeDamage(hitDamageAmount);
     }
 
     public override void TakeDamage(float amount)

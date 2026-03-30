@@ -345,16 +345,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2036561119991533835, guid: 69f918c80496093468c039ef7b4aecd4, type: 3}
       propertyPath: NetworkedBehaviours.Array.size
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2036561119991533835, guid: 69f918c80496093468c039ef7b4aecd4, type: 3}
       propertyPath: 'NetworkedBehaviours.Array.data[4]'
       value: 
-      objectReference: {fileID: 2616702236248856882}
+      objectReference: {fileID: 1209509934665619059}
     - target: {fileID: 2036561119991533835, guid: 69f918c80496093468c039ef7b4aecd4, type: 3}
       propertyPath: 'NetworkedBehaviours.Array.data[5]'
       value: 
-      objectReference: {fileID: 1209509934665619059}
+      objectReference: {fileID: 2278822133458538467}
     - target: {fileID: 2036561119991533835, guid: 69f918c80496093468c039ef7b4aecd4, type: 3}
       propertyPath: 'NetworkedBehaviours.Array.data[6]'
       value: 
@@ -391,9 +391,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 369116192719266880, guid: 69f918c80496093468c039ef7b4aecd4, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2616702236248856882}
-    - targetCorrespondingSourceObject: {fileID: 369116192719266880, guid: 69f918c80496093468c039ef7b4aecd4, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1209509934665619059}
     - targetCorrespondingSourceObject: {fileID: 369116192719266880, guid: 69f918c80496093468c039ef7b4aecd4, type: 3}
       insertIndex: -1
@@ -414,18 +411,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 369116192719266880, guid: 69f918c80496093468c039ef7b4aecd4, type: 3}
   m_PrefabInstance: {fileID: 7656050581418472933}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2616702236248856882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8007571970721747365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02f8e7a7c49c0ed43a9b951ae31f38f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1209509934665619059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -442,7 +427,6 @@ MonoBehaviour:
   _CurrentHealth: 0
   healthBarFillImage: {fileID: 1381232162158594857}
   overheadCanvas: {fileID: 4601939189292977487}
-  damageFromMonster: 20
   damageCooldown: 1
 --- !u!114 &2278822133458538467
 MonoBehaviour:
