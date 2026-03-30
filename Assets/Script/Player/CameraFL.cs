@@ -75,12 +75,25 @@ public class CameraFL : MonoBehaviour
         float distance = direction.magnitude;
         direction.Normalize();
 
-        if (Physics.SphereCast(targetEyePos, collisionRadius, direction, out RaycastHit hit, distance, wallLayer))
+        // Use SphereCastAll to ignore colliders belonging to the player itself
+        float currentDistance = distance;
+        RaycastHit[] hits = Physics.SphereCastAll(targetEyePos, collisionRadius, direction, distance, wallLayer);
+        foreach (var hit in hits)
         {
-            desiredPosition = targetEyePos + direction * hit.distance;
+            // Ignore the target itself and trigger colliders
+            if (hit.transform.root != target.root && !hit.collider.isTrigger)
+            {
+                if (hit.distance < currentDistance)
+                {
+                    currentDistance = hit.distance;
+                }
+            }
         }
+        desiredPosition = targetEyePos + direction * currentDistance;
 
-        transform.position = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
+        // Bỏ Vector3.Lerp ở đây vì target.position đã được Photon Fusion NetworkTransform nội suy.
+        // Dùng Lerp lần 2 trên client sẽ gây ra hiện tượng giật (double interpolation / jitter).
+        transform.position = desiredPosition;
         transform.LookAt(targetEyePos);
     }
 }
