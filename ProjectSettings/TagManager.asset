@@ -6,6 +6,7 @@ TagManager:
   tags:
   - HUDHealth
   - Enemies
+  - Enemy
   layers:
   - Default
   - TransparentFX

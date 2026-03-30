@@ -13,9 +13,7 @@ public class PlayerHealth : HealthBase
     // Không cần kéo, game sẽ tự tìm thanh máu góc trái trên màn hình
     private Image hudHealthFillImage;
 
-    [Header("Cài đặt sát thương nhận vào")]
-    [Tooltip("Sát thương nhận vào khi bị quái vật (bookheadmonster) đánh trúng")]
-    [SerializeField] private float damageFromMonster = 20f;
+    [Header("Cài đặt kháng sát thương")]
     [Tooltip("Thời gian kháng sát thương sau khi bị đánh trúng (tránh bị tụt máu liên tục trong 1 giây)")]
     [SerializeField] private float damageCooldown = 1f;
 
@@ -147,40 +145,51 @@ public class PlayerHealth : HealthBase
     // Nếu con quái vật có Collider đánh dấu là "Is Trigger" chạm vào nhân vật
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemies"))
+        if (other.CompareTag("Enemy") || other.CompareTag("Enemies"))
         {
-            TakeDamageFromMonster();
+            var enemyCombat = other.GetComponentInParent<EnemyCombat>();
+            if (enemyCombat != null)
+            {
+                TakeDamageFromMonster(enemyCombat.damageToTarget);
+            }
         }
     }
 
     // Nếu quái vật có Collider vật lí bình thường tông vào nhân vật
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemies"))
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Enemies"))
         {
-            TakeDamageFromMonster();
+            var enemyCombat = collision.gameObject.GetComponentInParent<EnemyCombat>();
+            if (enemyCombat != null)
+            {
+                TakeDamageFromMonster(enemyCombat.damageToTarget);
+            }
         }
     }
 
     // Nếu Player dùng CharacterController vô tình đụng trúng con quái
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (hit.gameObject.CompareTag("Player"))
+        if (hit.gameObject.CompareTag("Enemy") || hit.gameObject.CompareTag("Enemies"))
         {
-            TakeDamageFromMonster();
+            var enemyCombat = hit.gameObject.GetComponentInParent<EnemyCombat>();
+            if (enemyCombat != null)
+            {
+                TakeDamageFromMonster(enemyCombat.damageToTarget);
+            }
         }
     }
 
-    // Hàm công khai (public) để con quái cũng có thể gọi trực tiếp hàm này khi cắn trúng Player
-    public void TakeDamageFromMonster()
+    // Hàm công khai...
+    public void TakeDamageFromMonster(float damageAmount)
     {
-        // Kiểm tra xem đã hết thời gian hồi sát thương chưa (tránh 1 giây bị trừ máu 60 lần do va chạm lặp)
+        // Kiểm tra xem đã hết thời gian hồi sát thương chưa
         if (Time.time >= _lastDamageTime + damageCooldown)
         {
             _lastDamageTime = Time.time;
             
-            // Hàm TakeDamage được kế thừa từ HealthBase. Nó có check HasStateAuthority bên trong luôn rồi
-            TakeDamage(damageFromMonster);
+            TakeDamage(damageAmount);
         }
     }
 }
