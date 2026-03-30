@@ -456,7 +456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77bc4e4433bf9e941843d5699355942e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  punchDamage: 10
+  punchDamage: 50
   attackRange: 0.67
   attackCooldown: 1
   attackOrigin: {fileID: 8409647673637997628}

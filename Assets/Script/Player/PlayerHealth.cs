@@ -20,6 +20,7 @@ public class PlayerHealth : HealthBase
     [SerializeField] private float damageCooldown = 1f;
 
     private float _lastDamageTime = -999f;
+    private float _previousHealth; // MỚI THÊM: Lưu lại máu trước đó để biết lúc nào bị trừ
 
     private Animator _animator;
     private PlayerMovement _playerMovement;
@@ -39,6 +40,7 @@ public class PlayerHealth : HealthBase
     public override void Spawned()
     {
         base.Spawned();
+        _previousHealth = maxHealth; // MỚI THÊM: Gán máu ban đầu
 
         // Kiểm tra xem đây có phải là nhân vật do BẠN điều khiển không
         if (HasInputAuthority)
@@ -78,6 +80,18 @@ public class PlayerHealth : HealthBase
     {
         base.OnCurrentHealthChanged();
         UpdateHealthBarUI();
+
+        // MỚI THÊM: Nếu máu hiện tại nhỏ hơn máu trước đó VÀ chưa chết -> Bị đánh
+        if (CurrentHealth < _previousHealth && CurrentHealth > 0 && !_isDead)
+        {
+            if (_animator != null)
+            {
+                _animator.SetTrigger("Hit");
+            }
+        }
+
+        // Cập nhật lại máu trước đó
+        _previousHealth = CurrentHealth;
 
         if (CurrentHealth <= 0 && !_isDead)
         {
