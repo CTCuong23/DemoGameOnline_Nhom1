@@ -320,6 +320,18 @@ PrefabInstance:
       propertyPath: 'NetworkedBehaviours.Array.data[5]'
       value: 
       objectReference: {fileID: 1209509934665619059}
+    - target: {fileID: 6068803077210495523, guid: 69f918c80496093468c039ef7b4aecd4, type: 3}
+      propertyPath: m_Height
+      value: 1.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 6068803077210495523, guid: 69f918c80496093468c039ef7b4aecd4, type: 3}
+      propertyPath: m_Radius
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6068803077210495523, guid: 69f918c80496093468c039ef7b4aecd4, type: 3}
+      propertyPath: m_Center.y
+      value: 0.95
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -372,3 +384,5 @@ MonoBehaviour:
   _CurrentHealth: 0
   healthBarFillImage: {fileID: 1381232162158594857}
   overheadCanvas: {fileID: 4601939189292977487}
+  damageFromMonster: 20
+  damageCooldown: 0.75
