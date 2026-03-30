@@ -208,7 +208,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7823985590507495298}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: fdcafb2fc37a47e42b21753a02a2675a, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 2fbc4bbd60247ca49a17438e2ddbc67e, type: 3}
   m_Controller: {fileID: 9100000, guid: 7c95d8dd2dade77408fb8d93e998fdd9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -260,6 +260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageToTarget: 20
+  animator: {fileID: 9214041695907549456}
 --- !u!136 &1064241501568581317
 CapsuleCollider:
   m_ObjectHideFlags: 0
