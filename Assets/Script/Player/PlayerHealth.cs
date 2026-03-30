@@ -148,7 +148,7 @@ public class PlayerHealth : HealthBase
         if (other.CompareTag("Enemy") || other.CompareTag("Enemies"))
         {
             var enemyCombat = other.GetComponentInParent<EnemyCombat>();
-            if (enemyCombat != null)
+            if (enemyCombat != null && enemyCombat.enabled)
             {
                 TakeDamageFromMonster(enemyCombat.damageToTarget);
             }
@@ -161,7 +161,7 @@ public class PlayerHealth : HealthBase
         if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Enemies"))
         {
             var enemyCombat = collision.gameObject.GetComponentInParent<EnemyCombat>();
-            if (enemyCombat != null)
+            if (enemyCombat != null && enemyCombat.enabled)
             {
                 TakeDamageFromMonster(enemyCombat.damageToTarget);
             }
@@ -174,7 +174,7 @@ public class PlayerHealth : HealthBase
         if (hit.gameObject.CompareTag("Enemy") || hit.gameObject.CompareTag("Enemies"))
         {
             var enemyCombat = hit.gameObject.GetComponentInParent<EnemyCombat>();
-            if (enemyCombat != null)
+            if (enemyCombat != null && enemyCombat.enabled)
             {
                 TakeDamageFromMonster(enemyCombat.damageToTarget);
             }

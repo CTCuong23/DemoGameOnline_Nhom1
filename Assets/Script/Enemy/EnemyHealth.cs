@@ -64,16 +64,19 @@ public class EnemyHealth : HealthBase
 
         base.OnDeath();
 
-        // 1. Chết rổi thì phát Animation ngã ra chết
+        // 1. Chết rổi thì phát Animation ngã ra chết, phải xoá sạch các lệnh Attack tồn đọng
         if (_animator != null)
         {
+            // Tắt Root Motion để tránh việc hẩu hết các animation lỗi lôi quái vật dịch chuyển về tọa độ 0,0,0
+            _animator.applyRootMotion = false;
+            _animator.ResetTrigger("Attack");
+            _animator.ResetTrigger("Hit");
             _animator.SetTrigger("Die");
         }
 
-        // 2. Không cho di chuyển nữa (Đứng im tại chỗ)
+        // 2. Tắt hẳn hệ thống NavMeshAgent để xác quái vật rớt thẳng xuống đất (không bị lơ lửng trên không)
         if (_navAgent != null)
         {
-            _navAgent.isStopped = true;
             _navAgent.enabled = false;
         }
 
@@ -83,10 +86,15 @@ public class EnemyHealth : HealthBase
             _stateMachine.enabled = false;
         }
         
-        var behaviorAgent = GetComponent("BehaviorAgent") as UnityEngine.Behaviour;
-        if (behaviorAgent != null)
+        // Quét tất cả các script trên quái vật để tắt mọi thứ liên quan đến não bộ AI (đặc biệt là BehaviorGraph của Unity 6)
+        foreach (var comp in GetComponents<MonoBehaviour>())
         {
-            behaviorAgent.enabled = false;
+            if (comp == null) continue;
+            string compType = comp.GetType().Name;
+            if (compType.Contains("BehaviorAgent") || compType.Contains("BehaviorGraph"))
+            {
+                comp.enabled = false;
+            }
         }
 
         if (_aiInitializer != null)
@@ -94,15 +102,45 @@ public class EnemyHealth : HealthBase
             _aiInitializer.enabled = false;
         }
 
-        // 4. Báo cho Fusion là hãy xóa bỏ cục thịt này sau 3 giây
+        // Tắt luôn tính năng gây sát thương (EnemyCombat) để xác chết không cắn được người
+        var enemyCombat = GetComponent<EnemyCombat>();
+        if (enemyCombat != null)
+        {
+            enemyCombat.enabled = false;
+        }
+
+        // Tắt va chạm (Collider) và Khóa Vật lý (Rigidbody) để cái xác nằm im trên sàn 
+        // không bị rớt tọt qua gầm trái đất và không cản đường người chơi
+        var collider = GetComponent<Collider>();
+        if (collider != null) collider.enabled = false;
+
+        var rb = GetComponent<Rigidbody>();
+        if (rb != null) rb.isKinematic = true;
+
+        // Ép xác chết dính xuống mặt đất (Khắc phục lỗi Animation có tâm ở giữa nên nằm xoay bị nổi lơ lửng)
+        // Bắn 1 tia từ trên đầu xuống để đo khoảng cách tới mặt đất thực sự
+        if (Physics.Raycast(transform.position + Vector3.up * 1f, Vector3.down, out RaycastHit hit, 5f))
+        {
+            // Kéo toàn bộ mô hình xuống sát mặt đất (cộng 0.1f cho khỏi bị lún)
+            transform.position = new Vector3(transform.position.x, hit.point.y + -0.5f, transform.position.z);
+        }
+
+        // 4. Báo cho mạng Fusion xóa bỏ quái vật này sau 4 giây (dùng Coroutine để chắc chắn)
         if (HasStateAuthority)
         {
-            Invoke(nameof(DespawnEnemy), 3f);
+            Debug.Log("Quái vật chết! Bắt đầu đếm ngược 4 giây để xóa...");
+            StartCoroutine(DelayDespawnRoutine(4f));
         }
     }
 
-    private void DespawnEnemy()
+    // Hàm Coroutine chờ thời gian rồi mới xóa (thay cho Invoke cũ)
+    private System.Collections.IEnumerator DelayDespawnRoutine(float delaySeconds)
     {
+        // Chờ chạy hết số giây yêu cầu
+        yield return new WaitForSeconds(delaySeconds);
+
+        Debug.Log("Thời gian 4 giây đã hết! Tiến hành xóa (Despawn) khỏi mạng.");
+        // Xóa khỏi hệ thống Multiplayer
         if (Runner != null && Object != null)
         {
             Runner.Despawn(Object);
