@@ -115,6 +115,12 @@ public class PlayerHealth : HealthBase
         if (_playerAttack != null) _playerAttack.enabled = false;
         if (_characterController != null) _characterController.enabled = false;
 
+        // Tắt thanh máu trên đầu khi chết
+        if (overheadCanvas != null)
+        {
+            overheadCanvas.SetActive(false);
+        }
+
         Debug.Log("Người chơi đã chết!");
     }
 
