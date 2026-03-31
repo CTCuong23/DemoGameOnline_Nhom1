@@ -122,6 +122,46 @@ public class PlayerHealth : HealthBase
         }
 
         Debug.Log("Người chơi đã chết!");
+
+        // Chạy Coroutine hồi sinh sau 5 giây để test
+        StartCoroutine(RespawnRoutine());
+    }
+
+    private System.Collections.IEnumerator RespawnRoutine()
+    {
+        // Đợi 5 giây
+        yield return new WaitForSeconds(5f);
+
+        _isDead = false;
+
+        // Reset lại Animation (tắt state Die, quay về Idle)
+        if (_animator != null)
+        {
+            _animator.Rebind();
+            _animator.Update(0f);
+        }
+
+        // Bật lại di chuyển và tấn công
+        if (_playerMovement != null) _playerMovement.enabled = true;
+        if (_playerAttack != null) _playerAttack.enabled = true;
+        if (_characterController != null) _characterController.enabled = true;
+
+        // Bật lại thanh máu trên đầu (nếu là người khác)
+        if (!HasInputAuthority && overheadCanvas != null)
+        {
+            overheadCanvas.SetActive(true);
+        }
+
+        // Chỉ có Server mới có quyền gán lại máu, sau đó nó sẽ tự động bộ sang Client
+        if (HasStateAuthority)
+        {
+            CurrentHealth = maxHealth;
+        }
+
+        // Cập nhật lại thanh máu UI
+        UpdateHealthBarUI();
+
+        Debug.Log("Người chơi đã hồi sinh!");
     }
 
     private void UpdateHealthBarUI()
